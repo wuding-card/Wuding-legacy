@@ -1,0 +1,3 @@
+{
+  "client/src/*.js": "npx eslint --cache --fix-dry-run"
+}
