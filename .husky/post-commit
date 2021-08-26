@@ -1,0 +1,14 @@
+#!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+# husky hook disabled
+
+echo eslint fixable checking
+npx eslint client/src/*.js
+if [ "$?" -ne 0 ]
+then
+  npx eslint --fix client/src/*.js
+  echo fixed
+  echo please check and commit unstaged changes
+else
+  echo done
+fi
