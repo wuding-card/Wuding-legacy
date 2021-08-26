@@ -4,13 +4,16 @@
   "license": "MIT",
   "contributor": [],
   "devDependencies": {
+    "concurrently": "^6.2.1",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.24.0",
     "gitmoji-cli": "^4.5.1",
     "husky": "^7.0.2"
   },
   "scripts": {
+    "client": "cd client && npm start",
+    "install": "(cd client && npm install);",
     "prepare": "husky install",
-    "install": "(cd client && npm install);"
+    "start": "concurrently npm:client"
   }
 }
