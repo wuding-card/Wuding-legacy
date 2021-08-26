@@ -1,0 +1,21 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+if [[ "$OSTYPE" == "msys" ]]; then
+# Windows workaround for <https://github.com/carloscuesta/gitmoji-cli/issues/211>
+  sum1=$(md5sum .git/COMMIT_EDITMSG)
+  echo calling gitmoji
+  wt --window 0 -p cmd -d "$(pwd)" pwsh -NoProfile -Command "npx gitmoji --hook .git/COMMIT_EDITMSG"
+  while true
+  do
+    sum2=$(md5sum .git/COMMIT_EDITMSG)
+    if [ "$sum1" == "$sum2" ];
+    then
+      sleep 1
+    else
+      break
+    fi
+  done
+else
+  exec < /dev/tty && npx gitmoji --hook $1 $2 || true
+fi

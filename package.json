@@ -2,5 +2,13 @@
   "name": "wuding",
   "private": "true",
   "license": "MIT",
-  "contributor": []
+  "contributor": [],
+  "devDependencies": {
+    "gitmoji-cli": "^4.5.1",
+    "husky": "^7.0.2"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "install": "(cd client && npm install);"
+  }
 }
